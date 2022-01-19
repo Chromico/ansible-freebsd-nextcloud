@@ -27,21 +27,26 @@
 - name: Install required packages
   pkgng: name={{item}} state=present
   with_items:
-    - nextcloud-php72
-    - postgresql10-server
+    - nextcloud-php80
+    - postgresql14-server
+    - postgresql14-client
     - nginx
-    - redis
-    - php72-pecl-redis
+    - python38
+    - bash
+    - nano   
+    
+    # - redis
+    # - php74-pecl-redis
 
 - name: Install optional packages for nextcloud
   pkgng: name={{item}} state=present
   with_items:
-    - nextcloud-calendar-php72
-    - nextcloud-contacts-php72
-    - nextcloud-mail-php72
-    - nextcloud-notes-php72
-    - nextcloud-passman-php72
-    - nextcloud-tasks-php72
-    - nextcloud-twofactor_totp-php72
-    - nextcloud-twofactor_u2f-php72
+    - nextcloud-calendar-php80
+    - nextcloud-contacts-php80
+    - nextcloud-mail-php80
+    - nextcloud-notes-php80
+    - nextcloud-passman-php80
+    - nextcloud-tasks-php80
+    - nextcloud-twofactor_totp-php80
+    - nextcloud-twofactor_u2f-php80
   tags: optional

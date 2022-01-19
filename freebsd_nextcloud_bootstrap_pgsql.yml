@@ -7,10 +7,10 @@
   gather_facts: False
   vars:
     ansible_python_interpreter: "/usr/local/bin/python"
-  vars_files:
-    - secrets/custom_pkg.yml
-    - secrets/dbcred.yml
-    - secrets/server.yml
+  # vars_files:
+  #   # - secrets/custom_pkg.yml
+  #   # - secrets/dbcred.yml
+  #   - secrets/server.yml
   roles:
     # - jail
     - pkg-psql
@@ -18,3 +18,4 @@
     - nginx
     # - redis
     - php
+    - ssl

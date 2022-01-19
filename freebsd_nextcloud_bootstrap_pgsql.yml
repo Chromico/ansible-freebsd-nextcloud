@@ -12,9 +12,9 @@
     - secrets/dbcred.yml
     - secrets/server.yml
   roles:
-    - jail
+    # - jail
     - pkg-psql
     - psql
     - nginx
-    - redis
+    # - redis
     - php

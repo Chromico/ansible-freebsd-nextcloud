@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo Input the domain name
+server_name =$1
 
-read domain
-
-certbot --nginx -d $domain
+certbot --nginx -d '$server_name'

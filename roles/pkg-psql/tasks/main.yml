@@ -1,28 +1,28 @@
 ---
-- name: Setup pkg directories
-  file:
-    path: /usr/local/etc/pkg/{{item}}
-    state: directory
-  with_items:
-    - repos
-    - keys
+#- name: Setup pkg directories
+  #file:
+   # path: /usr/local/etc/pkg/{{item}}
+  #  state: directory
+ # with_items:
+    #- repos
+    #- keys
 
-- name: Disable 'quarterly' pkg repo
-  copy:
-    src: files/{{item}}
-    dest: /usr/local/etc/pkg/repos/{{item}}
-  with_items:
-    - FreeBSD.conf
+#- name: Disable 'quarterly' pkg repo
+ # copy:
+  #  src: files/{{item}}
+   # dest: /usr/local/etc/pkg/repos/{{item}}
+  #with_items:
+   # - FreeBSD.conf
 
-- name: Configure custom pkg repo
-  template:
-    src: files/custom_pkg.j2
-    dest: /usr/local/etc/pkg/repos/custom.conf
+#- name: Configure custom pkg repo
+ # template:
+  #  src: files/custom_pkg.j2
+   # dest: /usr/local/etc/pkg/repos/custom.conf
 
-- name: Provide public key for custom pkg repo
-  copy:
-    src: secrets/{{custom_repo.key}}
-    dest: /usr/local/etc/pkg/keys/{{custom_repo.key}}
+#- name: Provide public key for custom pkg repo
+ # copy:
+  #  src: secrets/{{custom_repo.key}}
+   # dest: /usr/local/etc/pkg/keys/{{custom_repo.key}}
 
 - name: Install required packages
   pkgng: name={{item}} state=present
@@ -31,7 +31,10 @@
     - postgresql14-server
     - postgresql14-client
     - nginx
-    - python38
+    - python
+    - py38-certbot
+    - py38-certbot-nginx
+    - py38-pip
     - bash
     - nano   
     

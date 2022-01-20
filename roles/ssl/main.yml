@@ -1,4 +1,0 @@
----
-- name: Initialise Let's Encrypt
-  script: files/certbot.sh
- 

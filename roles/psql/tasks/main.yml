@@ -27,11 +27,11 @@
   args:
     creates: /var/db/postgres/PSQL_INITDB_DONE
 
-- name: Listen only via sockets
-  lineinfile:
-    path: /data/postgres/postgresql.conf
-    regexp: 'listen_addresses\s*='
-    line: listen_addresses = ''
+#- name: Listen only via sockets
+ # lineinfile:
+  #  path: /data/postgres/postgresql.conf
+   # regexp: 'listen_addresses\s*='
+    #line: listen_addresses = ''
 
 - name: Run database service
   service:
@@ -44,11 +44,11 @@
   args:
     creates: /var/db/postgres/PSQL_NEXTCLOUD_ADMIN_DONE
 
-- name: Force password authentication for sockets
-  lineinfile:
-    path: /data/postgres/pg_hba.conf
-    regexp: 'local\s+all\s+all\s+'
-    line: local   all             all                                     md5
+#- name: Force password authentication for sockets
+ # lineinfile:
+ #   path: /data/postgres/pg_hba.conf
+ #   regexp: 'local\s+all\s+all\s+'
+#    line: local   all             all                                     md5
 
 - name: Restart database service
   service:

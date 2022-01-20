@@ -1,20 +1,36 @@
 ---
 # General vars including FreeBSD specific ansible tweaks
-- hosts: nextcloud
-  remote_user: ansible
+- hosts: test
+  remote_user: root
   become: yes
   become_method: su
   gather_facts: False
   vars:
-    ansible_python_interpreter: "/usr/local/bin/python"
+    ansible_python_interpreter: "/usr/local/bin/python3.8"
   # vars_files:
   #   # - secrets/custom_pkg.yml
   #   # - secrets/dbcred.yml
   #   - secrets/server.yml
+  vars_prompt:
+    - name: server_name
+      prompt: Please enter the server name
+      private: no
+
+    - name: db_rootpw
+      prompt: Enter a password for the root db
+
+    - name: db_ncuser
+      prompt: Enter a db username
+
+    - name: db_ncpass
+      prompt: Enter a password for the nextcloud db
+
+ 
   roles:
     # - jail
     - pkg-psql
     - psql
+    #- ssl
     - nginx
     # - redis
     - php

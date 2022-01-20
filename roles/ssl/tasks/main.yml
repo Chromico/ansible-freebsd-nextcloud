@@ -1,0 +1,30 @@
+---
+
+- name: Register certbot
+  shell: |
+    certbot -n register --agree-tos --email me@domain.example
+    touch /usr/local/etc/letsencrypt/.registered
+  args:
+    creates: /usr/local/etc/letsencrypt/.registered
+  tags:
+    - nginx
+    - certbot
+
+- name: Setup cronjob for renewal
+  cron:
+    name: certbot-renewal
+    job: "/bin/bash -lc '/usr/local/bin/certbot -q renew'"
+    minute: "0"
+    hour: "14"
+  tags:
+    - nginx
+    - certbot
+
+- name: 'Get certificate'
+  command: 'certbot -n --nginx certonly -d {{ server_name }}'
+  args:
+    creates: '/usr/local/etc/letsencrypt/live/{{ server_name }}'
+  ignore_errors: true
+  tags:
+    - nginx
+    - certbot

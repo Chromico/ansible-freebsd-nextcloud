@@ -12,26 +12,25 @@
   #   # - secrets/dbcred.yml
   #   - secrets/server.yml
   vars_prompt:
-    - name: server_name
-      prompt: Please enter the server name
-      private: no
 
     - name: db_rootpw
       prompt: Enter a password for the root db
+      private: no
 
     - name: db_ncuser
       prompt: Enter a db username
+      private: no
 
     - name: db_ncpass
       prompt: Enter a password for the nextcloud db
+      private: no
 
  
   roles:
     # - jail
     - pkg-psql
     - psql
-    #- ssl
     - nginx
     # - redis
     - php
-    - ssl
+    # - ssl
